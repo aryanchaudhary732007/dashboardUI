@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Dynamic Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <i class="fa-solid fa-cube fa-lg"></i>
+            <span>NEXUS CORE</span>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="active" data-target="dashboard"><a href="#"><i class="fa-solid fa-chart-pie"></i>Dashboard</a></li>
+            <li data-target="analytics"><a href="#"><i class="fa-solid fa-wallet"></i>Analytics</a></li>
+            <li data-target="customers"><a href="#"><i class="fa-solid fa-users"></i>Customers</a></li>
+            <li data-target="products"><a href="#"><i class="fa-solid fa-box"></i>Products</a></li>
+            <li data-target="settings"><a href="#"><i class="fa-solid fa-sliders"></i>Settings</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <header>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Search analytics, logs...">
+            </div>
+            <div class="header-profile">
+                <button class="notification-btn">
+                    <i class="fa-regular fa-bell"></i>
+                </button>
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Admin Avatar" class="profile-img">
+            </div>
+        </header>
+
+        <div id="page-dashboard" class="dashboard-page active">
+            <section class="metrics-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <span>NET REVENUE</span>
+                        <div class="card-icon"><i class="fa-solid fa-dollar-sign"></i></div>
+                    </div>
+                    <div class="card-value" id="revenue-val">$48,250</div>
+                    <div class="card-subtext"><i class="fa-solid fa-arrow-trend-up"></i> +12% this month</div>
+                </div>
+                <div class="card-body-pulse card">
+                    <div class="card-header">
+                        <span>LIVE USERS</span>
+                        <div class="card-icon"><i class="fa-solid fa-users"></i></div>
+                    </div>
+                    <div class="card-value" id="users-val">3,642</div>
+                    <div class="card-subtext"><i class="fa-solid fa-arrow-trend-up"></i> +5% live pulse</div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span>CONVERSION RATE</span>
+                        <div class="card-icon"><i class="fa-solid fa-bullseye"></i></div>
+                    </div>
+                    <div class="card-value">2.4%</div>
+                    <div class="card-subtext negative"><i class="fa-solid fa-arrow-trend-down"></i> -0.8% today</div>
+                </div>
+            </section>
+
+            <section class="content-grid">
+                <div class="chart-container">
+                    <h3 class="section-title">Performance Dynamic Flow</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <h3 class="section-title">Recent Transactions</h3>
+                    <table>
+                        <thead>
+                            <tr><th>Client</th><th>Amount</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Acme Corp</td><td>$1,200</td><td><span class="status-badge completed">Completed</span></td></tr>
+                            <tr><td>Dexter Ltd</td><td>$850</td><td><span class="status-badge pending">Pending</span></td></tr>
+                            <tr><td>Initech Inc</td><td>$3,100</td><td><span class="status-badge completed">Completed</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <div id="page-analytics" class="dashboard-page">
+            <h2 class="page-title">Advanced Analytics</h2>
+            <div class="card" style="margin-bottom: 24px;">
+                <h3 class="section-title">Data Breakdown</h3>
+                <p style="color: var(--text-muted);">यहाँ आप अपनी कंपनी की गहराई से रिपोर्ट देख सकते हैं। (Live Analytics Engine Active)</p>
+                <div class="chart-wrapper" style="height: 300px; margin-top: 20px;">
+                    <canvas id="analyticsBarChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-customers" class="dashboard-page">
+            <h2 class="page-title">Customer Management</h2>
+            <div class="table-container">
+                <h3 class="section-title">Active Clients Directory</h3>
+                <table>
+                    <thead>
+                        <tr><th>Name</th><th>Email</th><th>Plan</th><th>Status</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>John Doe</td><td>john@example.com</td><td>Enterprise</td><td><span class="status-badge completed">Active</span></td></tr>
+                        <tr><td>Jane Smith</td><td>jane@example.com</td><td>Startup</td><td><span class="status-badge completed">Active</span></td></tr>
+                        <tr><td>Alex Jones</td><td>alex@example.com</td><td>Free Trial</td><td><span class="status-badge pending">Expired</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="page-products" class="dashboard-page">
+            <h2 class="page-title">Product Inventory</h2>
+            <section class="metrics-grid">
+                <div class="card">
+                    <h3>Nexus Core API</h3>
+                    <p style="color: var(--text-muted); margin: 10px 0;">v2.4.1 - Active</p>
+                    <span class="status-badge completed">Operational</span>
+                </div>
+                <div class="card">
+                    <h3>SaaS Dashboard UI</h3>
+                    <p style="color: var(--text-muted); margin: 10px 0;">v1.0.0 - Production</p>
+                    <span class="status-badge completed">Operational</span>
+                </div>
+                <div class="card">
+                    <h3>Database Cluster</h3>
+                    <p style="color: var(--text-muted); margin: 10px 0;">AWS-East - Scaling</p>
+                    <span class="status-badge pending">High Load</span>
+                </div>
+            </section>
+        </div>
+
+        <div id="page-settings" class="dashboard-page">
+            <h2 class="page-title">Control Settings</h2>
+            <div class="card" style="max-width: 600px;">
+                <h3 class="section-title">Preferences</h3>
+                <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+                    <label style="display: flex; justify-content: space-between; align-items: center;">
+                        <span>Dark Theme Accent Glow</span>
+                        <input type="checkbox" checked style="accent-color: var(--accent); width: 20px; height: 20px;">
+                    </label>
+                    <label style="display: flex; justify-content: space-between; align-items: center;">
+                        <span>Email Notifications</span>
+                        <input type="checkbox" checked style="accent-color: var(--accent); width: 20px; height: 20px;">
+                    </label>
+                    <label style="display: flex; justify-content: space-between; align-items: center;">
+                        <span>Simulated Dynamic Live Feed</span>
+                        <input type="checkbox" id="feedToggle" checked style="accent-color: var(--accent); width: 20px; height: 20px;">
+                    </label>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
